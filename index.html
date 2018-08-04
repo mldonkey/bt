@@ -1,0 +1,171 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>种子转磁力链接_磁力链接转种子</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="种子_torrent_hash_magnet_转换_互转" />
+    <meta name="description" content="种子转磁力链接_磁力链接转种子_torrent.org.cn是一个提供免费比特种子和磁力链接互转的网站" />
+<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap-fileinput/4.4.8/css/fileinput.min.css" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+	
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-9">
+                <!-- 种子转磁力链接 -->
+                <div>
+                    <h2>种子转磁力链接</h2>
+                    <p class="help-block">选择种子文件，点击 转换 按钮</p>
+                    
+                        <input type="file" name="file" id="torrent" />
+              
+                    <p class="help-block"></p>
+                    <p></p>
+                </div>
+                <div style="margin-top:30px;">
+					<div class="panel panel-success" style="display:none" id="magnetPanel">
+						<div class="panel-heading">磁力链接</div>
+						<div class="panel-body">
+							<p style="margin:0 auto;" id='magnet'>123456</p>
+						</div>
+					</div>
+                </div>
+
+                <!-- 磁力链接转种子 -->
+                <div>
+                    <h2>磁力链接转种子</h2>
+                    <div class="bs-callout bs-callout-info" id="callout-badges-ie8-empty">
+                        <h4></h4>
+                        <p>将磁力链接复制到文本框里，可以不带 <code> magnet:// </code></p>
+						<div class="input-group">
+							<input type="text" name="hash" id="hash" class="form-control" placeholder="magnet://">
+							<span class="input-group-btn">
+								<button class="btn btn-default" id="transform">　<i class="glyphicon glyphicon-refresh"></i> 转换　</button>
+							</span>
+						</div>
+                    </div>
+                </div>
+                <div style="margin-top:20px;display:none" id='success'>
+                    <div class="panel panel-success">
+						<div class="panel-heading">下载地址</div>
+						<div class="panel-body">
+							<a class="btn btn-success" href="#" id="download"><i class="glyphicon glyphicon-download"> </i>下载</a>
+						</div>
+					</div>
+                </div>
+				<div style="margin-top:20px;display:none" id="error">
+                    <div class="alert alert-danger">
+                        <p>转换失败</p>
+                    </div>
+                </div>
+
+                <!-- 法律 -->
+                <div>
+                    <h2>关于法律</h2>
+                    <div class="alert alert-danger">
+                        <p>不解析种子的任何信息</p>
+                        <p>不提供种子的列表服务</p>
+                        <p>不经营自己的源服务器</p>
+                        <p>不记录任何上传的信息</p>
+                    </div>
+                </div>
+
+				<!-- jquery -->
+				<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+				
+				<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+				
+                <script src="//cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/fileinput.min.js" type="text/javascript"></script>
+                <script src="//cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/locales/zh.min.js" type="text/javascript"></script>
+
+				
+                <script type="text/javascript">
+                    $(function () {
+
+
+                        $("#torrent").fileinput({
+                            'language': 'zh', //设置语言
+                            'allowedFileExtensions': ['torrent'],//接收的文件后缀
+                            'showPreview': false,
+                            uploadAsync: true,
+                            'uploadUrl':'//www.offcloud.net./php/bt2magnet.php',
+							enctype: 'multipart/form-data',
+                            browseClass: "btn btn-success",
+                            browseLabel: "选择种子",
+                            browseIcon: "<i class=\"glyphicon glyphicon-plus\"></i>",
+                            removeClass: "btn btn-danger",
+                            //removeLabel: "删除",
+                            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i>",
+                            uploadClass: "btn btn-info",
+                            uploadLabel: "转换",
+                            uploadIcon: "<i class=\"glyphicon glyphicon-refresh\"></i>",
+                            initialCaption: "看什么看，选种子啊你"
+                        });
+						$("#torrent").on("fileuploaded", function (event, data, previewId, index) {
+							$('#magnetPanel').fadeIn();
+							$('#magnet').text(data.response.url);
+							console.log(data);
+						});
+						$('#transform').click(function(){
+							var hash=$("#hash").val()
+							$('#error').hide();
+							$('#success').hide();
+							$.post("//www.offcloud.net./php/magnet2bt.php",{hash:hash},function(result){
+								console.log(result)
+								if(result.error){
+									$('#error').fadeIn();
+									
+								}else{
+									$('#success').fadeIn();
+									$('#download').attr('href','//www.offcloud.net.'+result.url);
+								}
+							},"json");
+							console.log(hash)
+						});
+                    });
+                </script>
+
+
+
+            </div>
+
+            <div class="col-md-3" style="margin-top:20px;">
+                <div class="panel panel-success">
+                    <div class="panel-heading">微信捐助二维码</div>
+                    <div class="panel-body">
+                        <!-- <p style="margin:0 auto; width:205px;"><img src="./img/tenpay.jpg" alt="财付通捐赠" /></p> -->
+                        <p style="margin:0 auto; width:205px;"><img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f3c884e56203498ccd183bf5cf35542393ace54eb16dbf406afaef672e98a09e813d36c9dc877a2cdc7a5c4caba83e27?pictype=scale&size=750" alt="财付通捐赠" /></p>
+                    </div>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">支付宝捐助二维码</div>
+                    <div class="panel-body">
+                        <!-- <p style="margin:0 auto; width:205px;"><img src="./img/alipay.jpg" alt="支付宝捐赠" /></p> -->
+                        <p style="margin:0 auto; width:205px;"><img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/3dc77b8256a4b226a3fbfeb48301694bca290494bb6b07cf412b42adae532d005d34c578cf7ef5624f8e8e0c03e2f738?pictype=scale&size=750" alt="支付宝捐赠" /></p>
+                    </div>
+                </div>
+
+               
+			    <div class="alert alert-success">
+                    <p>维护这个站很累你知道不?</p>
+                    <p>没钱续费服务器你知道不?</p>
+                    <p>三更半夜写代码你知道不?</p>
+                    <p>站长没有女朋友你知道不?</p>
+                    <p>你知道不?</p>
+                    <p>知道不?</p>
+                    <p>道不?</p>
+                    <p>不?</p>
+                    <p>你不捐助一下么?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
