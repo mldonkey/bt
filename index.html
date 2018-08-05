@@ -1,171 +1,265 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>种子转磁力链接_磁力链接转种子</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="种子_torrent_hash_magnet_转换_互转" />
-    <meta name="description" content="种子转磁力链接_磁力链接转种子_torrent.org.cn是一个提供免费比特种子和磁力链接互转的网站" />
-<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/bootstrap-fileinput/4.4.8/css/fileinput.min.css" rel="stylesheet" />
-<link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    磁力转种子
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="./assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="./assets/demo/demo.css" rel="stylesheet" />
 </head>
-<body>
-	
 
+<body class="profile-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
-        <div class="row">
-
-            <div class="col-md-9">
-                <!-- 种子转磁力链接 -->
-                <div>
-                    <h2>种子转磁力链接</h2>
-                    <p class="help-block">选择种子文件，点击 转换 按钮</p>
-                    
-                        <input type="file" name="file" id="torrent" />
-              
-                    <p class="help-block"></p>
-                    <p></p>
-                </div>
-                <div style="margin-top:30px;">
-					<div class="panel panel-success" style="display:none" id="magnetPanel">
-						<div class="panel-heading">磁力链接</div>
-						<div class="panel-body">
-							<p style="margin:0 auto;" id='magnet'>123456</p>
-						</div>
-					</div>
-                </div>
-
-                <!-- 磁力链接转种子 -->
-                <div>
-                    <h2>磁力链接转种子</h2>
-                    <div class="bs-callout bs-callout-info" id="callout-badges-ie8-empty">
-                        <h4></h4>
-                        <p>将磁力链接复制到文本框里，可以不带 <code> magnet:// </code></p>
-						<div class="input-group">
-							<input type="text" name="hash" id="hash" class="form-control" placeholder="magnet://">
-							<span class="input-group-btn">
-								<button class="btn btn-default" id="transform">　<i class="glyphicon glyphicon-refresh"></i> 转换　</button>
-							</span>
-						</div>
-                    </div>
-                </div>
-                <div style="margin-top:20px;display:none" id='success'>
-                    <div class="panel panel-success">
-						<div class="panel-heading">下载地址</div>
-						<div class="panel-body">
-							<a class="btn btn-success" href="#" id="download"><i class="glyphicon glyphicon-download"> </i>下载</a>
-						</div>
-					</div>
-                </div>
-				<div style="margin-top:20px;display:none" id="error">
-                    <div class="alert alert-danger">
-                        <p>转换失败</p>
-                    </div>
-                </div>
-
-                <!-- 法律 -->
-                <div>
-                    <h2>关于法律</h2>
-                    <div class="alert alert-danger">
-                        <p>不解析种子的任何信息</p>
-                        <p>不提供种子的列表服务</p>
-                        <p>不经营自己的源服务器</p>
-                        <p>不记录任何上传的信息</p>
-                    </div>
-                </div>
-
-				<!-- jquery -->
-				<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-				
-				<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-				
-                <script src="//cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/fileinput.min.js" type="text/javascript"></script>
-                <script src="//cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/locales/zh.min.js" type="text/javascript"></script>
-
-				
-                <script type="text/javascript">
-                    $(function () {
-
-
-                        $("#torrent").fileinput({
-                            'language': 'zh', //设置语言
-                            'allowedFileExtensions': ['torrent'],//接收的文件后缀
-                            'showPreview': false,
-                            uploadAsync: true,
-                            'uploadUrl':'//www.offcloud.net./php/bt2magnet.php',
-							enctype: 'multipart/form-data',
-                            browseClass: "btn btn-success",
-                            browseLabel: "选择种子",
-                            browseIcon: "<i class=\"glyphicon glyphicon-plus\"></i>",
-                            removeClass: "btn btn-danger",
-                            //removeLabel: "删除",
-                            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i>",
-                            uploadClass: "btn btn-info",
-                            uploadLabel: "转换",
-                            uploadIcon: "<i class=\"glyphicon glyphicon-refresh\"></i>",
-                            initialCaption: "看什么看，选种子啊你"
-                        });
-						$("#torrent").on("fileuploaded", function (event, data, previewId, index) {
-							$('#magnetPanel').fadeIn();
-							$('#magnet').text(data.response.url);
-							console.log(data);
-						});
-						$('#transform').click(function(){
-							var hash=$("#hash").val()
-							$('#error').hide();
-							$('#success').hide();
-							$.post("//www.offcloud.net./php/magnet2bt.php",{hash:hash},function(result){
-								console.log(result)
-								if(result.error){
-									$('#error').fadeIn();
-									
-								}else{
-									$('#success').fadeIn();
-									$('#download').attr('href','//www.offcloud.net.'+result.url);
-								}
-							},"json");
-							console.log(hash)
-						});
-                    });
-                </script>
-
-
-
-            </div>
-
-            <div class="col-md-3" style="margin-top:20px;">
-                <div class="panel panel-success">
-                    <div class="panel-heading">微信捐助二维码</div>
-                    <div class="panel-body">
-                        <!-- <p style="margin:0 auto; width:205px;"><img src="./img/tenpay.jpg" alt="财付通捐赠" /></p> -->
-                        <p style="margin:0 auto; width:205px;"><img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f3c884e56203498ccd183bf5cf35542393ace54eb16dbf406afaef672e98a09e813d36c9dc877a2cdc7a5c4caba83e27?pictype=scale&size=750" alt="财付通捐赠" /></p>
-                    </div>
-                </div>
-
-                <div class="panel panel-info">
-                    <div class="panel-heading">支付宝捐助二维码</div>
-                    <div class="panel-body">
-                        <!-- <p style="margin:0 auto; width:205px;"><img src="./img/alipay.jpg" alt="支付宝捐赠" /></p> -->
-                        <p style="margin:0 auto; width:205px;"><img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/3dc77b8256a4b226a3fbfeb48301694bca290494bb6b07cf412b42adae532d005d34c578cf7ef5624f8e8e0c03e2f738?pictype=scale&size=750" alt="支付宝捐赠" /></p>
-                    </div>
-                </div>
-
-               
-			    <div class="alert alert-success">
-                    <p>维护这个站很累你知道不?</p>
-                    <p>没钱续费服务器你知道不?</p>
-                    <p>三更半夜写代码你知道不?</p>
-                    <p>站长没有女朋友你知道不?</p>
-                    <p>你知道不?</p>
-                    <p>知道不?</p>
-                    <p>道不?</p>
-                    <p>不?</p>
-                    <p>你不捐助一下么?</p>
-                </div>
-            </div>
-        </div>
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="https://www.offcloud.net">
+          磁力助手 </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="material-icons">apps</i> 敬请期待
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('./assets/img/city-profile.jpg')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand text-center">
+            <h1>磁力助手</h1>
+            <h3 class="title text-center">最好的在线种子磁力互转平台</h3>
+          </div>
+        </div>
+		
+      </div>
+    </div>
+	
+  </div>
+  
+  <div class="main main-raised">
 
+    <div class="profile-content">
+      <div class="container">
+	  <div id="error" style="display:none">
+  <div class="alert alert-danger" >
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">info_outline</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Error:</b> 转换失败,请稍后再试
+        </div>
+      </div>
+	  </div>
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+		  
+            <div class="profile-tabs">
+              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                    <i class="material-icons">camera</i> 磁力转种子
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                    <i class="material-icons">palette</i> 种子转磁力
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                    <i class="material-icons">favorite</i> 赞助
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+		
+        <div class="tab-content tab-space">
+          <div class="tab-pane active text-center gallery" id="studio">
+
+			  <div class="form-group">
+				<label for="magnet">磁力链接</label>
+				<input  class="form-control" id="magnet" placeholder="请输入磁力链接或40位hash">
+			  </div>
+
+			  <button class="btn btn-primary" id='transform'>转换</button>
+			  
+<a id="download" href="#" style='display:none'><input class="btn btn-primary" type='button' value="下载"></a>
+
+          </div>
+          <div class="tab-pane text-center gallery" id="works">
+            <button class="btn btn-primary" onclick="file.click()">打开种子文件</button>
+            <input type="file" class="btn btn-primary" id="file" style="display:none">
+						  <div class="form-group">
+				<label></label>
+				<input  class="form-control" id="generateMagnet" >
+			  </div>
+          </div>
+          <div class="tab-pane text-center gallery" id="favorite">
+            
+			
+			
+			
+
+			<div class="row justify-content-center">
+			  <div class="col-md-3">
+				  <div class="card">
+					  <div class="card-header card-header-text card-header-info">
+						<div class="card-text">
+						  <h4 class="card-title">支付宝捐助二维码</h4>
+						</div>
+					  </div>
+					  <div class="card-body">
+						  <img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/3dc77b8256a4b226a3fbfeb48301694bca290494bb6b07cf412b42adae532d005d34c578cf7ef5624f8e8e0c03e2f738?pictype=scale&size=750" alt="支付宝捐赠" />
+					  </div>
+				  </div>
+			  </div>
+
+			  <div class="col-md-3">
+				  <div class="card">
+					  <div class="card-header card-header-text card-header-success">
+						<div class="card-text">
+						  <h4 class="card-title">微信捐助二维码</h4>
+						</div>
+					  </div>
+					  <div class="card-body">
+						  <img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f3c884e56203498ccd183bf5cf35542393ace54eb16dbf406afaef672e98a09e813d36c9dc877a2cdc7a5c4caba83e27?pictype=scale&size=750" alt="财付通捐赠" />
+					  </div>
+				  </div>
+			  </div>
+			</div>			
+			
+			
+			
+			
+			
+			
+			
+          </div>
+
+		  
+
+		  
+        </div>
+		
+      </div>
+	  
+    </div>
+  </div>
+  <footer class="footer footer-default">
+    <div class="container">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="#">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Licenses
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <!--   Core JS Files   -->
+  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!--	Plugin for Sharrre btn -->
+  <script src="./assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="./assets/js/material-kit.js?v=2.0.4" type="text/javascript"></script>
+  <script src="./assets/js/str.js" type="text/javascript"></script>
+  <script src="./assets/js/bencode.js" type="text/javascript"></script>
+  <script src="./assets/js/sha1.js" type="text/javascript"></script>
+  <script src="./assets/js/long.js" type="text/javascript"></script>
+  <script>
+  $(function(){
+   $('#transform').click(function(){
+		var hash=$("#magnet").val()
+		
+		$('#error').hide();
+		$('#download').hide();
+		$.post("//www.offcloud.net./php/magnet2bt.php",{hash:hash},function(result){
+			console.log(result)
+			if(result.error){
+				$('#error').html(`  <div class="alert alert-danger" >
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">info_outline</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Error:</b> 转换失败,请稍后再试
+        </div>
+      </div>`);
+				$('#error').fadeIn();
+				
+			}else{
+				$('#download').fadeIn();
+				$('#download').attr('href',result.url);
+			}
+		},"json");
+		console.log(hash)
+	});
+	$("#file").on("change",function (e) {
+                    $.each(this.files,function (k,v) {
+                        var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
+                        reader.readAsBinaryString(v);//读取文件的内容
+
+                        reader.onload = function(){
+                            //console.log(this.result);//当读取完成之后会回调这个函数，然后此时文件的内容存储到了result中。直接操作即可。
+                            var torrent=analyseBT(this.result);
+							var hash="magnet:?xt=urn:btih:"+torrent.data.hash
+							$("#generateMagnet").val(hash);
+                            
+                        };
+                        
+                    });
+					 });
+  })
+ 
+  </script>
 </body>
+
 </html>
