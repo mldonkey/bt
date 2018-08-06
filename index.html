@@ -8,14 +8,14 @@
   <title>
     磁力转种子
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'
+  />
+  <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.1/css/mdui.min.css">
+
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="./assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="./assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="profile-page sidebar-collapse">
@@ -42,7 +42,7 @@
       </div>
     </div>
   </nav>
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url('./assets/img/city-profile.jpg')">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/97e16f542105a1cd734ec86fa2dbc803d15309d7f001557492e090b9b224ada2161e11fe96dce3a4f558300a00aa5975?pictype=scale&from=30013&version=3.3.3.3&uin=1953815498&fname=city-profile.jpg&size=750')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
@@ -51,42 +51,44 @@
             <h3 class="title text-center">最好的在线种子磁力互转平台</h3>
           </div>
         </div>
-		
+
       </div>
     </div>
-	
+
   </div>
-  
+
   <div class="main main-raised">
 
     <div class="profile-content">
       <div class="container">
-	  <div id="error" style="display:none">
-  <div class="alert alert-danger" >
-        <div class="container">
-          <div class="alert-icon">
-            <i class="material-icons">info_outline</i>
+        <div id="error" style="display:none">
+          <div class="alert alert-danger">
+            <div class="container">
+              <div class="alert-icon">
+                <i class="material-icons">info_outline</i>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                  <i class="material-icons">clear</i>
+                </span>
+              </button>
+              <b>Error:</b> 转换失败,请稍后再试
+            </div>
           </div>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="material-icons">clear</i></span>
-          </button>
-          <b>Error:</b> 转换失败,请稍后再试
         </div>
-      </div>
-	  </div>
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
-		  
+
             <div class="profile-tabs">
               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                    <i class="material-icons">camera</i> 磁力转种子
+                    <i class="material-icons">library_books</i> 磁力转种子
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                    <i class="material-icons">palette</i> 种子转磁力
+                    <i class="material-icons">camera</i> 种子转磁力
                   </a>
                 </li>
                 <li class="nav-item">
@@ -98,79 +100,103 @@
             </div>
           </div>
         </div>
-		
+
         <div class="tab-content tab-space">
           <div class="tab-pane active text-center gallery" id="studio">
 
-			  <div class="form-group">
-				<label for="magnet">磁力链接</label>
-				<input  class="form-control" id="magnet" placeholder="请输入磁力链接或40位hash">
-			  </div>
+            <div class="form-group">
+              <label for="magnet">磁力链接</label>
+              <input class="form-control" id="magnet" placeholder="请输入磁力链接或40位hash">
+            </div>
 
-			  <button class="btn btn-primary" id='transform'>转换</button>
-			  
-<a id="download" href="#" style='display:none'><input class="btn btn-primary" type='button' value="下载"></a>
+            <button class="btn btn-primary" id='transform'>转换</button>
+
+            <a id="download" href="#" style='display:none'>
+              <input class="btn btn-primary" type='button' value="下载">
+            </a>
 
           </div>
           <div class="tab-pane text-center gallery" id="works">
-            <button class="btn btn-primary" onclick="file.click()">打开种子文件</button>
+            <button class="btn btn-primary" onclick="$('#file').val('');file.click()">打开种子文件</button>
+            <button class="btn btn-primary" id="btnTorrentDetail" data-toggle="modal" data-target="#myModal" style="display: none">查看文件列表</button>
+
             <input type="file" class="btn btn-primary" id="file" style="display:none">
-						  <div class="form-group">
-				<label></label>
-				<input  class="form-control" id="generateMagnet" >
-			  </div>
+            <div class="form-group">
+              <label id="filename"></label>
+              <input class="form-control" id="generateMagnet">
+            </div>
+
           </div>
           <div class="tab-pane text-center gallery" id="favorite">
-            
-			
-			
-			
 
-			<div class="row justify-content-center">
-			  <div class="col-md-3">
-				  <div class="card">
-					  <div class="card-header card-header-text card-header-info">
-						<div class="card-text">
-						  <h4 class="card-title">支付宝捐助二维码</h4>
-						</div>
-					  </div>
-					  <div class="card-body">
-						  <img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/3dc77b8256a4b226a3fbfeb48301694bca290494bb6b07cf412b42adae532d005d34c578cf7ef5624f8e8e0c03e2f738?pictype=scale&size=750" alt="支付宝捐赠" />
-					  </div>
-				  </div>
-			  </div>
 
-			  <div class="col-md-3">
-				  <div class="card">
-					  <div class="card-header card-header-text card-header-success">
-						<div class="card-text">
-						  <h4 class="card-title">微信捐助二维码</h4>
-						</div>
-					  </div>
-					  <div class="card-body">
-						  <img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f3c884e56203498ccd183bf5cf35542393ace54eb16dbf406afaef672e98a09e813d36c9dc877a2cdc7a5c4caba83e27?pictype=scale&size=750" alt="财付通捐赠" />
-					  </div>
-				  </div>
-			  </div>
-			</div>			
-			
-			
-			
-			
-			
-			
-			
+
+
+
+            <div class="row justify-content-center">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header card-header-text card-header-info">
+                    <div class="card-text">
+                      <h4 class="card-title">支付宝捐助二维码</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/3dc77b8256a4b226a3fbfeb48301694bca290494bb6b07cf412b42adae532d005d34c578cf7ef5624f8e8e0c03e2f738?pictype=scale&size=750"
+                      alt="支付宝捐赠" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header card-header-text card-header-success">
+                    <div class="card-text">
+                      <h4 class="card-title">微信捐助二维码</h4>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <img src="//picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f3c884e56203498ccd183bf5cf35542393ace54eb16dbf406afaef672e98a09e813d36c9dc877a2cdc7a5c4caba83e27?pictype=scale&size=750"
+                      alt="财付通捐赠" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-
-		  
-
-		  
         </div>
-		
+
       </div>
-	  
+
     </div>
   </div>
+  <!-- Classic Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="card card-signup card-plain">
+          <div class="modal-header">
+            <div class="card-header card-header-primary text-center">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">clear</i>
+              </button>
+              <h4 class="card-title">文件列表</h4>
+
+            </div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer justify-content-center">
+            <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal">Close</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->
+
+
+
   <footer class="footer footer-default">
     <div class="container">
       <nav class="float-left">
@@ -194,71 +220,41 @@
       </nav>
     </div>
   </footer>
+  <div class="mdui-container">
+
+
+    <div class="mdui-fab-wrapper" id="fab">
+      <button class="mdui-fab mdui-ripple mdui-color-pink-accent">
+        <i class="mdui-icon material-icons">add</i>
+        <i class="mdui-icon mdui-fab-opened material-icons">mode_edit</i>
+      </button>
+      <div class="mdui-fab-dial">
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink">
+          <i class="mdui-icon material-icons">backup</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red">
+          <i class="mdui-icon material-icons">bookmark</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange">
+          <i class="mdui-icon material-icons">access_alarms</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue">
+          <i class="mdui-icon material-icons">touch_app</i>
+        </button>
+      </div>
+    </div>
+  </div>
   <!--   Core JS Files   -->
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <script src="./assets/js/plugins/moment.min.js"></script>
-  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-  <script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--	Plugin for Sharrre btn -->
-  <script src="./assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
-  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/material-kit.js?v=2.0.4" type="text/javascript"></script>
+  <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.1/js/mdui.min.js"></script>
   <script src="./assets/js/str.js" type="text/javascript"></script>
   <script src="./assets/js/bencode.js" type="text/javascript"></script>
   <script src="./assets/js/sha1.js" type="text/javascript"></script>
   <script src="./assets/js/long.js" type="text/javascript"></script>
-  <script>
-  $(function(){
-   $('#transform').click(function(){
-		var hash=$("#magnet").val()
-		
-		$('#error').hide();
-		$('#download').hide();
-		$.post("https://www.offcloud.net/php/magnet2bt.php",{hash:hash},function(result){
-			console.log(result)
-			if(result.error){
-				$('#error').html(`  <div class="alert alert-danger" >
-        <div class="container">
-          <div class="alert-icon">
-            <i class="material-icons">info_outline</i>
-          </div>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="material-icons">clear</i></span>
-          </button>
-          <b>Error:</b> 转换失败,请稍后再试
-        </div>
-      </div>`);
-				$('#error').fadeIn();
-				
-			}else{
-				$('#download').fadeIn();
-				$('#download').attr('href','https://www.offcloud.net'+result.url);
-			}
-		},"json");
-		console.log(hash)
-	});
-	$("#file").on("change",function (e) {
-                    $.each(this.files,function (k,v) {
-                        var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
-                        reader.readAsBinaryString(v);//读取文件的内容
-
-                        reader.onload = function(){
-                            //console.log(this.result);//当读取完成之后会回调这个函数，然后此时文件的内容存储到了result中。直接操作即可。
-                            var torrent=analyseBT(this.result);
-							var hash="magnet:?xt=urn:btih:"+torrent.data.hash
-							$("#generateMagnet").val(hash);
-                            
-                        };
-                        
-                    });
-					 });
-  })
- 
-  </script>
+  <script src="./assets/js/main.js" type="text/javascript"></script>
 </body>
 
 </html>
