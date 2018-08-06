@@ -58,7 +58,7 @@ $(function () {
           html += `<li class="mdui-list-item">
               <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">move_to_inbox</i>
               <div class="mdui-list-item-content">
-                <div class="mdui-list-item-title mdui-list-item-one-line">`+ file.index + "." + file.name + `</div>
+                <div class="mdui-list-item-title">`+ file.index + "." + file.name + `</div>
                 <div class="mdui-list-item-text mdui-list-item-one-line">
                   `+ file.size + `
                 </div>
